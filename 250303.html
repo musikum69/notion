@@ -47,4 +47,48 @@
             font-family: 'Montserrat', sans-serif;
             color: #183059;
             font-size: 4em;
-            text-align: cent
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="timer">
+        <div class="days">
+            <div id="days" class="numbers">0</div>days
+        </div> 
+        <div class="hours">
+            <div id="hours" class="numbers">0</div>hours
+        </div> 
+        <div class="minutes">
+            <div id="minutes" class="numbers">0</div>minutes
+        </div> 
+        <div class="seconds">
+            <div id="seconds" class="numbers">0</div>seconds
+        </div> 
+    </div>
+
+    <script>
+        const myDate = new Date('2019-08-03T00:00:00'); // 2019년 8월 3일로 설정
+
+        function updateTimer() {
+            const today = new Date().getTime();
+            const diff = today - myDate; // 현재 시간에서 과거 날짜를 빼기
+
+            let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            if (document.getElementById("days")) {
+                document.getElementById("days").innerHTML = days;
+                document.getElementById("hours").innerHTML = hours;
+                document.getElementById("minutes").innerHTML = minutes;
+                document.getElementById("seconds").innerHTML = seconds;
+            }
+        }
+
+        updateTimer(); // 페이지 로드 시 즉시 실행
+        setInterval(updateTimer, 1000); // 1초마다 갱신
+    </script>
+</body>
+</html>
